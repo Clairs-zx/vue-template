@@ -12,10 +12,12 @@ export default {
   name: 'App',
   data() {
     return {
-      zhCN,
+      zhCN
     }
-  },
+  }
 }
 </script>
 
-<style></style>
+<style lang="less" scoped>
+</style>
+
