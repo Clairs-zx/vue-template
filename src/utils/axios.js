@@ -1,12 +1,13 @@
 /*
  * @Author: ZhXIn
  * @Date: 2023-10-12 17:12:49
- * @LastEditTime: 2023-10-12 19:05:58
+ * @LastEditTime: 2023-10-12 21:38:11
  * @Description:axios的二次封装
  */
 
 import axios from 'axios'
-import {baseURL} from '@/config'
+import qs from 'qs'
+import { baseURL } from '@/config'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
@@ -16,13 +17,19 @@ NProgress.configure({
   showSpinner: false, // 是否显示加载ico
   trickleSpeed: 200, // 自动递增间隔
   minimum: 0.3, // 初始化最小百分比
-  parent: 'body',
+  parent: 'body'
 })
 
 const createService = function (baseURL) {
-  const _axios = new axios({
+  const _axios = axios.create({
     baseURL,
     timeout: 5 * 60 * 1000, // 超时时间
+    // 请求参数序列化 eg:axios({url:'111',method:'get',params:{a:1,b:2}}) => url：111?a=1&b=2
+    paramsSerializer: {
+      serialize(params) {
+        return qs.stringify(params, { allowDots: true }) // 允许参数为a.b.c的形式
+      }
+    }
   })
 
   // 定义请求拦截器
@@ -39,7 +46,7 @@ const createService = function (baseURL) {
   )
 
   // 定义响应拦截器
-  _axios.interceptors.responce.use(
+  _axios.interceptors.response.use(
     (responce) => {
       NProgress.done()
       const res = responce.data
@@ -58,4 +65,4 @@ const createService = function (baseURL) {
   return _axios
 }
 
-export const service = createService(baseURL)
+export default createService(baseURL)
