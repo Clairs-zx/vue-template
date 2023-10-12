@@ -1,7 +1,7 @@
 /*
  * @Author: ZhXIn
  * @Date: 2023-10-11 19:22:13
- * @LastEditTime: 2023-10-12 16:27:46
+ * @LastEditTime: 2023-10-12 19:00:48
  * @Description:路由配置文件
  */
 import Vue from 'vue'
