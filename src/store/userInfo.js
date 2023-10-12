@@ -5,8 +5,8 @@
  * @Description:userInfo状态管理文件
  */
 export const userInfo = {
-	state: {},
-	mutations: {},
-	getters: {},
-	actions: {},
+  state: {},
+  mutations: {},
+  getters: {},
+  actions: {},
 }
