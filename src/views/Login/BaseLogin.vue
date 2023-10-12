@@ -1,16 +1,24 @@
 <!--
  * @Author: ZhXIn
  * @Date: 2023-10-12 09:53:05
- * @LastEditTime: 2023-10-12 19:28:54
+ * @LastEditTime: 2023-10-12 23:08:34
  * @Description: 登录页面
 -->
 <template>
-  <div>登录页面</div>
+  <div>
+    LoginPage
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'LoginPage'
+  name: 'LoginPage',
+  data() {
+    return {
+    }
+  },
+  created() {
+  }
 }
 </script>
 
