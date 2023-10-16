@@ -1,7 +1,7 @@
 /*
  * @Author: ZhXIn
  * @Date: 2023-10-11 19:22:13
- * @LastEditTime: 2023-10-12 23:26:44
+ * @LastEditTime: 2023-10-13 16:20:31
  * @Description:路由配置文件
  */
 import Vue from 'vue'
@@ -46,7 +46,15 @@ const routes = [
   {
     path: '/Home',
     name: 'Home',
-    component: () => import('@/views/Layout/BaseHome.vue')
+    component: () => import('@/views/Layout/BaseHome.vue'),
+    redirect: 'HomePage',
+    children: [
+      {
+        path: '/',
+        name: 'HomePage',
+        component: () => import('@/views/Home/index.vue')
+      }
+    ]
   }
 ]
 
