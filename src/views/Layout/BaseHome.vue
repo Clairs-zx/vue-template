@@ -1,7 +1,7 @@
 <!--
  * @Author: ZhXIn
  * @Date: 2023-10-12 23:17:08
- * @LastEditTime: 2023-10-13 11:26:32
+ * @LastEditTime: 2023-10-16 13:40:32
  * @Description: 主页Layout布局
 -->
 <template>
@@ -13,7 +13,9 @@
     <a-layout>
       <Header :collapsed="collapsed" @onCollapsed="collapsed = !collapsed" />
       <a-layout-content style="margin: 16px 16px 0">
-        <div :style="{ padding: '24px', background: '#fff', minHeight: '650px' }">Bill is a cat.</div>
+        <div :style="{ padding: '24px', background: '#fff', minHeight: '650px' }">
+          <router-view/>
+        </div>
       </a-layout-content>
       <Footer />
     </a-layout>
