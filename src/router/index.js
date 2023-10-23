@@ -1,7 +1,7 @@
 /*
  * @Author: ZhXIn
  * @Date: 2023-10-11 19:22:13
- * @LastEditTime: 2023-10-16 16:16:13
+ * @LastEditTime: 2023-10-19 17:47:54
  * @Description:路由配置文件
  */
 import Vue from 'vue'
@@ -48,14 +48,14 @@ const routes = [
     name: 'Home',
     component: () => import('@/views/Layout/BaseHome.vue'),
     redirect: 'HomePage',
-    meta: {
-      title: '首页'
-    },
     children: [
       {
         path: '/',
         name: 'HomePage',
-        component: () => import('@/views/Home/index.vue')
+        component: () => import('@/views/Home/index.vue'),
+        meta: {
+          title: '首页'
+        }
       },
       {
         path: '/Components',
@@ -73,6 +73,24 @@ const routes = [
             meta: {
               title: '表格'
             }
+          },
+          {
+            path: 'Form',
+            name: 'Form',
+            redirect: '/Components/Form/AForm',
+            meta: {
+              title: '表单'
+            },
+            children: [
+              {
+                path: 'AForm',
+                name: 'AForm',
+                component: () => import('@/views/Components/Form/Aform.vue'),
+                meta: {
+                  title: 'a-form组件'
+                }
+              }
+            ]
           }
         ]
       },
@@ -81,7 +99,7 @@ const routes = [
         name: 'Plugins',
         component: () => import('@/views/Plugins/index.vue'),
         meta: {
-          title:'第三方插件'
+          title: '第三方插件'
         },
         children: [
           {
@@ -89,7 +107,7 @@ const routes = [
             name: 'VJstree',
             component: () => import('@/components/VJstree/index.vue'),
             meta: {
-              title:'VJstree'
+              title: 'VJstree'
             }
           }
         ]
