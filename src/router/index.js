@@ -15,7 +15,7 @@ NProgress.configure({
   showSpinner: false, // 是否显示加载ico
   trickleSpeed: 200, // 自动递增间隔
   minimum: 0.3, // 初始化最小百分比
-  parent: 'body'
+  parent: 'body',
 })
 
 // 解决在使用vue-router路由跳转相同路径而报错问题
@@ -36,12 +36,12 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/Home'
+    redirect: '/Home',
   },
   {
     path: '/Login',
     name: 'Login',
-    component: () => import('@/views/Login/BaseLogin.vue')
+    component: () => import('@/views/Login/BaseLogin.vue'),
   },
   {
     path: '/Home',
@@ -54,16 +54,15 @@ const routes = [
         name: 'HomePage',
         component: () => import('@/views/Home/index.vue'),
         meta: {
-          title: '首页'
-        }
+          title: '首页',
+        },
       },
       {
         path: '/Components',
         name: 'Components',
         component: () => import('@/views/Components/index.vue'),
-        redirect: '/Components/Table',
         meta: {
-          title: '基础组件'
+          title: '基础组件',
         },
         children: [
           {
@@ -71,35 +70,53 @@ const routes = [
             name: 'Table',
             component: () => import('@/views/Components/Table/index.vue'),
             meta: {
-              title: '表格'
-            }
+              title: '表格',
+            },
           },
           {
             path: 'Form',
             name: 'Form',
-            redirect: '/Components/Form/AForm',
+            component: () => import('@/views/Components/Form/index.vue'),
             meta: {
-              title: '表单'
+              title: '表单',
             },
             children: [
               {
-                path: 'AForm',
-                name: 'AForm',
-                component: () => import('@/views/Components/Form/Aform.vue'),
+                path: 'Form',
+                name: 'Form',
+                component: () =>
+                  import('@/views/Components/Form/Form/Form.vue'),
                 meta: {
-                  title: 'a-form组件'
-                }
-              }
-            ]
-          }
-        ]
+                  title: 'Form表单',
+                },
+              },
+              {
+                path: 'FormModel',
+                name: 'FormModel',
+                component: () =>
+                  import('@/views/Components/Form/FormModel/index.vue'),
+                meta: {
+                  title: 'FormModel表单',
+                },
+              },
+            ],
+          },
+          {
+            path: 'Tabs',
+            name: 'Tabs',
+            component: () => import('@/views/Components/Tabs/index.vue'),
+            meta: {
+              title: '标签页',
+            },
+          },
+        ],
       },
       {
         path: '/Plugins',
         name: 'Plugins',
         component: () => import('@/views/Plugins/index.vue'),
         meta: {
-          title: '第三方插件'
+          title: '第三方插件',
         },
         children: [
           {
@@ -107,19 +124,27 @@ const routes = [
             name: 'VJstree',
             component: () => import('@/components/VJstree/index.vue'),
             meta: {
-              title: 'VJstree'
-            }
-          }
-        ]
-      }
-    ]
-  }
+              title: 'VJstree',
+            },
+          },
+          {
+            path: 'Draggable',
+            name: 'Draggable',
+            component: () => import('@/components/Draggable/index.vue'),
+            meta: {
+              title: 'Draggable',
+            },
+          },
+        ],
+      },
+    ],
+  },
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
 })
 
 router.beforeEach((to, from, next) => {
