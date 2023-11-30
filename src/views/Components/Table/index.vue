@@ -8,6 +8,8 @@
     <TableWithDynamicForm />
     <a-divider>可拖拽的表格</a-divider>
     <DraggableTable />
+    <a-divider>嵌套的表格</a-divider>
+    <NestedTable />
   </div>
 </template>
 
@@ -16,6 +18,7 @@
   import TableWithDynamicColumns from './components/TableWithDynamicColumns.vue'
   import TableWithCustomCell from './components/TableWithCustomCell.vue'
   import DraggableTable from './components/DraggableTable.vue'
+  import NestedTable from './components/NestedTable.vue'
 
   export default {
     name: 'TableComponents',
@@ -24,8 +27,14 @@
       TableWithDynamicColumns,
       TableWithCustomCell,
       DraggableTable,
+      NestedTable,
     },
   }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+</style>

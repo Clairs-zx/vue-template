@@ -58,6 +58,14 @@ const routes = [
         },
       },
       {
+        path: '/Iconfont',
+        name: 'Iconfont',
+        component: () => import('@/views/Iconfont/index.vue'),
+        meta: {
+          title: '图标库',
+        },
+      },
+      {
         path: '/Components',
         name: 'Components',
         component: () => import('@/views/Components/index.vue'),
@@ -65,6 +73,14 @@ const routes = [
           title: '基础组件',
         },
         children: [
+          {
+            path: 'Selector',
+            name: 'Selector',
+            component: () => import('@/views/Components/Selector/index.vue'),
+            meta: {
+              title: '选择器',
+            },
+          },
           {
             path: 'Table',
             name: 'Table',
@@ -133,6 +149,38 @@ const routes = [
             component: () => import('@/components/Draggable/index.vue'),
             meta: {
               title: 'Draggable',
+            },
+          },
+          {
+            path: 'DraggablePlus',
+            name: 'DraggablePlus',
+            component: () => import('@/components/DraggablePlus/index.vue'),
+            meta: {
+              title: 'DraggablePlus',
+            },
+          },
+          {
+            path: 'SortableJS',
+            name: 'SortableJS',
+            component: () => import('@/components/SortableJS/index.vue'),
+            meta: {
+              title: 'SortableJS',
+            },
+          },
+          {
+            path: 'AntvX6',
+            name: 'AntvX6',
+            component: () => import('@/components/AntvX6/index.vue'),
+            meta: {
+              title: 'AntvX6',
+            },
+          },
+          {
+            path: 'Animate',
+            name: 'Animate',
+            component: () => import('@/components/Animate/index.vue'),
+            meta: {
+              title: 'Animate',
             },
           },
         ],

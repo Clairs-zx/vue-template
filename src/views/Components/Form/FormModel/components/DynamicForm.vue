@@ -1,14 +1,10 @@
 <template>
-  <div>
-    <a-form-model
-      ref="dynamicValidateForm"
-      :model="dynamicValidateForm"
-      v-bind="formItemLayoutWithOutLabel"
-    >
+  <div class="container">
+    <a-form-model ref="form" :model="form">
       <a-form-model-item
-        v-for="(domain, index) in dynamicValidateForm.domains"
-        :key="domain.value"
-        v-bind="index === 0 ? formItemLayout : {}"
+        v-for="(domain, index) in form.domains"
+        :key="domain.key"
+        v-bind="index === 0 ? formItemLayout : formItemLayoutWithOutLabel"
         :label="index === 0 ? 'Domains' : ''"
         :prop="'domains.' + index + '.value'"
         :rules="{
@@ -23,31 +19,24 @@
           style="width: 60%; margin-right: 8px"
         />
         <a-icon
-          v-if="dynamicValidateForm.domains.length > 1"
+          v-if="form.domains.length > 1"
           class="dynamic-delete-button"
           type="minus-circle-o"
-          :disabled="dynamicValidateForm.domains.length === 1"
-          @click="removeDomain(domain)"
+          @click="removeItem(index, 'form')"
         />
       </a-form-model-item>
       <a-form-model-item v-bind="formItemLayoutWithOutLabel">
-        <a-button type="dashed" style="width: 60%" @click="addDomain">
-          <a-icon type="plus" /> Add field
+        <a-button type="dashed" style="width: 60%" @click="addItem">
+          <a-icon type="plus" /> 添加
         </a-button>
       </a-form-model-item>
       <a-form-model-item v-bind="formItemLayoutWithOutLabel">
         <div style="text-align: center; width: 60%">
           <a-space>
-            <a-button
-              type="primary"
-              html-type="submit"
-              @click="submitForm('dynamicValidateForm')"
-            >
-              Submit
+            <a-button type="primary" @click="submitForm('form')">
+              提交
             </a-button>
-            <a-button @click="resetForm('dynamicValidateForm')">
-              Reset
-            </a-button>
+            <a-button @click="resetForm('form')"> 重置 </a-button>
           </a-space>
         </div>
       </a-form-model-item>
@@ -76,33 +65,51 @@
             sm: { span: 20, offset: 4 },
           },
         },
-        dynamicValidateForm: {
+        form: {
           domains: [],
         },
+        dynamicId: 0,
       }
     },
+    mounted() {
+      this.setForm(['111', '222'])
+    },
     methods: {
+      setForm(formData) {
+        this.$nextTick(() => {
+          this.form.domains = formData.map((item) => {
+            return {
+              key: this.dynamicId++,
+              value: item,
+            }
+          })
+        })
+      },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!')
-          } else {
-            console.log('error submit!!')
-            return false
+            const formData = this.form.domains.reduce((pre, item) => {
+              pre.push(item.value)
+              return pre
+            }, [])
+            console.log(formData)
           }
         })
       },
       resetForm(formName) {
         this.$refs[formName].resetFields()
       },
-      removeDomain(item) {
-        let index = this.dynamicValidateForm.domains.indexOf(item)
-        if (index !== -1) {
-          this.dynamicValidateForm.domains.splice(index, 1)
-        }
+      removeItem(index, formName) {
+        this.form.domains.splice(index, 1)
+        this.$$nextTick(() => {
+          this.$refs[formName].validate(() => {}) // 删除以后需要重新校验一下
+        })
       },
-      addDomain() {
-        this.dynamicValidateForm.domains.push('')
+      addItem() {
+        this.form.domains.push({
+          key: this.dynamicId++,
+          value: '',
+        })
       },
     },
   }
@@ -120,11 +127,11 @@
   .dynamic-delete-button:hover {
     color: #777;
   }
-  .dynamic-delete-button[disabled] {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
   .ant-form-item {
     margin-bottom: 12px;
+  }
+  .container {
+    width: 80%;
+    margin: 0 auto;
   }
 </style>

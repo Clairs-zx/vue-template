@@ -12,12 +12,18 @@ import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import '@/style/index.less'
 
+import './assets/iconfont/iconfont'
+import './assets/iconfont/iconfont.css'
+
+import VueClipboards from 'vue-clipboard2'
+
 Vue.config.productionTip = false
 
 Vue.use(Antd)
+Vue.use(VueClipboards)
 
 new Vue({
   router,
   store,
-  render: (h) => h(App)
+  render: (h) => h(App),
 }).$mount('#app')

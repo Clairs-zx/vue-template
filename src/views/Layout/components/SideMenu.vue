@@ -19,7 +19,8 @@
         :key="menu.menuKey"
       >
         <span slot="title">
-          <a-icon :type="menu.iconType" />
+          <!-- <i class="iconfont" :class="menu.iconType" /> -->
+          <a-icon :type="menu.iconType"></a-icon>
           <span>{{ menu.menuName }}</span>
         </span>
         <template v-for="subMenu in menu.children">
@@ -72,10 +73,19 @@
             menuKey: '/',
           },
           {
+            menuName: '图标库',
+            iconType: 'home',
+            menuKey: '/Iconfont',
+          },
+          {
             menuName: '基础组件',
             iconType: 'appstore',
             menuKey: '/Components',
             children: [
+              {
+                menuName: '选择器',
+                menuKey: '/Components/Selector',
+              },
               {
                 menuName: '标签页',
                 menuKey: '/Components/Tabs',
@@ -127,6 +137,22 @@
               {
                 menuName: 'Draggable',
                 menuKey: '/Plugins/Draggable',
+              },
+              {
+                menuName: 'DraggablePlus',
+                menuKey: '/Plugins/DraggablePlus',
+              },
+              {
+                menuName: 'SortableJS',
+                menuKey: '/Plugins/SortableJS',
+              },
+              {
+                menuName: 'AntvX6',
+                menuKey: '/Plugins/AntvX6',
+              },
+              {
+                menuName: 'Animate',
+                menuKey: '/Plugins/Animate',
               },
             ],
           },

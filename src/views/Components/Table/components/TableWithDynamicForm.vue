@@ -4,7 +4,7 @@
       <a-form-model ref="dynamicValidateForm" :model="record">
         <a-space
           v-for="(patch, index) in record.patches"
-          :key="index"
+          :key="patch.key"
           style="display: flex; align-items: baseline"
         >
           <a-form-model-item

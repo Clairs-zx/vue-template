@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-popover placement="bottomLeft">
+    <a-popover placement="bottomLeft" style="margin-bottom: 10px">
       <a-checkbox
         slot="title"
         style="margin: 5px 0"

@@ -6,13 +6,18 @@
 -->
 <template>
   <a-layout id="components-layout-demo-side" style="min-height: 100vh">
-    <a-layout-sider v-model="collapsed" collapsible breakpoint="lg">
+    <a-layout-sider
+      v-model="collapsed"
+      collapsible
+      breakpoint="lg"
+      :style="{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }"
+    >
       <div class="logo" :class="collapsed ? 'sm-logo' : 'lg-logo'">
         {{ collapsed ? 'Antd' : 'Ant Design Vue' }}
       </div>
       <SideMenu :collapsed="collapsed" />
     </a-layout-sider>
-    <a-layout>
+    <a-layout :style="{ marginLeft: collapsed ? '80px' : '200px' }">
       <Header :collapsed="collapsed" @onCollapsed="collapsed = !collapsed" />
       <a-layout-content style="margin: 16px 16px 0">
         <div
