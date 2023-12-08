@@ -83,6 +83,10 @@
             menuKey: '/Components',
             children: [
               {
+                menuName: '面包屑',
+                menuKey: '/Components/Breadcrumb',
+              },
+              {
                 menuName: '选择器',
                 menuKey: '/Components/Selector',
               },

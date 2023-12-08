@@ -74,6 +74,14 @@ const routes = [
         },
         children: [
           {
+            path: 'Breadcrumb',
+            name: 'Breadcrumb',
+            component: () => import('@/views/Components/Breadcrumb/index.vue'),
+            meta: {
+              title: '面包屑',
+            },
+          },
+          {
             path: 'Selector',
             name: 'Selector',
             component: () => import('@/views/Components/Selector/index.vue'),
